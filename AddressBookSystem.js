@@ -150,6 +150,16 @@ function viewContactsByState(){
     return contactsStateMap;
 }
 
+function countByCity(){
+    addressBookArr.filter((contact) => countCityMap.set(contact.city, searchContactByCity(contact.city).length));
+    return countCityMap;
+}
+
+function countByState(){
+    addressBookArr.filter((contact) => countStateMap.set(contact.state, searchContactByCity(contact.state).length));
+    return countStateMap;
+}
+
 try
 {
     let contact1 = new Contact("Guru", "Kumar", "Ramapuram", "Chennai", "TamilNadu", "600069", "91 9876543219", "guru@gmail.com");
@@ -201,3 +211,4 @@ try{
 
 console.log(searchContactByCity("Kolkata"));
 console.log(viewContactsByCity("Kolkata"));
+console.log(countByCity());
