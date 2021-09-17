@@ -72,10 +72,43 @@ class Contact {
         "\nCity : "+ this.city + "\nState : "+ this.state +"\nZip : "+ this.zip+ "\nPhone No : "+ this.phoneNo + "\nEmail : "+ this.email;
     }
 }  
-let addressBookArray = new Array();
+let addressBookArr = new Array();
+
+function contactExists(fName, lName){
+    return addressBookArr.some(u => u.firstName == fName && u.lastName == lName);
+}
+
+function editContact(fName, lName, property, value){
+    if(contactExists(fName, lName)){
+    switch(property){
+        case "address":
+            addressBookArr.find((contact) => contact.firstName == fName).address = value;
+            break;
+        case "city":
+            addressBookArr.find((contact) => contact.firstName == fName).city = value;
+            break;
+        case "state":
+            addressBookArr.find((contact) => contact.firstName == fName).state = value;
+            break;
+        case "zip":
+            addressBookArr.find((contact) => contact.firstName == fName).zip = value;
+            break;
+        case "phone":
+            addressBookArr.find((contact) => contact.firstName == fName).phoneNo = value;
+            break;
+        case "email":
+            addressBookArr.find((contact) => contact.firstName == fName).email = value;
+            break;
+        default:
+            console.log("Enter valid property");
+    }
+  }else{
+      console.log("Contact Does Not Exist");
+  }
+}
 try
 {
-    addressBookArray.push(new Contact("Guru", "Kumar", "Ramapuram", "Chennai", "TamilNadu", "600069", "91 9876543219", "guru@gmail.com"));
+    addressBookArr.push(new Contact("Guru", "Kumar", "Ramapuram", "Chennai", "TamilNadu", "600069", "91 9876543219", "guru@gmail.com"));
 }
 catch(e)
 {
@@ -83,11 +116,13 @@ catch(e)
 }
 try
 {
-    addressBookArray.push(new Contact("Max", "Willson", "Palanipet", "Chennai", "TamilNadu", "600069", "91 9876544598", "max@gmail.com"));
+    addressBookArr.push(new Contact("Max", "Willson", "Palanipet", "Chennai", "TamilNadu", "600069", "91 9876544598", "max@gmail.com"));
 }
 catch(e)
 {
     console.error(e);
 }
 
-console.log(addressBookArray);
+console.log(addressBookArr);
+editContact("Max", "Willson", "address", "Kandigai");
+console.log(addressBookArr);
