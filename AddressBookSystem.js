@@ -73,6 +73,10 @@ class Contact {
     }
 }  
 let addressBookArr = new Array();
+let contactsCityMap = new Map();
+let contactsStateMap = new Map();
+let countCityMap = new Map();
+let countStateMap = new Map();
 
 function contactExists(fName, lName){
     return addressBookArr.some(u => u.firstName == fName && u.lastName == lName);
@@ -136,6 +140,16 @@ function searchContactByState(state) {
     return addressBookArr.filter((contact) => contact.state == state);
   }
 
+function viewContactsByCity(){
+    addressBookArr.filter((contact) => contactsCityMap.set(contact.city, searchContactByCity(contact.city)));
+    return contactsCityMap;
+}
+
+function viewContactsByState(){
+    addressBookArr.filter((contact) => contactsCityMap.set(contact.state, searchContactByCity(contact.state)));
+    return contactsStateMap;
+}
+
 try
 {
     let contact1 = new Contact("Guru", "Kumar", "Ramapuram", "Chennai", "TamilNadu", "600069", "91 9876543219", "guru@gmail.com");
@@ -186,3 +200,4 @@ try{
 }
 
 console.log(searchContactByCity("Kolkata"));
+console.log(viewContactsByCity("Kolkata"));
