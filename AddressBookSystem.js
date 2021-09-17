@@ -68,8 +68,8 @@ class Contact {
     }
 
     toString(){
-        return "First Name : "+ this.firstName + "\nLast Name : "+ this.lastName + "\nAddress : "+ this.address + 
-        "\nCity : "+ this.city + "\nState : "+ this.state +"\nZip : "+ this.zip+ "\nPhone No : "+ this.phoneNo + "\nEmail : "+ this.email;
+        return "First Name : "+ this.firstName + ", Last Name : "+ this.lastName + ", Address : "+ this.address + 
+        ", city : "+ this.city + ", State : "+ this.state +", Zip : "+ this.zip+ ", Phone No : "+ this.phoneNo + ", Email : "+ this.email;
     }
 }  
 let addressBookArr = new Array();
@@ -106,6 +106,15 @@ function editContact(fName, lName, property, value){
       console.log("Contact Does Not Exist");
   }
 }
+
+function deleteContact(fName, lName){
+    if(contactExists(fName, lName)){
+    addressBookArr = addressBookArr.filter((user) => user.firstName != fName && user.lastName != lName);
+    }else{
+        console.log("Contact Does Not Exist");
+    }
+}
+
 try
 {
     addressBookArr.push(new Contact("Guru", "Kumar", "Ramapuram", "Chennai", "TamilNadu", "600069", "91 9876543219", "guru@gmail.com"));
@@ -122,7 +131,24 @@ catch(e)
 {
     console.error(e);
 }
+try{
+    addressBookArr.push(new Contact("Arijit", "Dey", "Sodepur", "Kolkata", "West Bengal", "123456", "91 9898989898", "arijit@gmail.com"));
+}
+catch(e)
+{
+    console.error(e);
+}
+try
+{
+    addressBookArr.push(new Contact("Raj", "Pal", "Kalyani", "Kolkata", "West Bengal", "234567", "91 9898989897", "raj@gmail.com"));
+}
+catch(e)
+{
+    console.error(e);
+}
 
 console.log(addressBookArr);
 editContact("Max", "Willson", "address", "Kandigai");
+console.log(addressBookArr);
+deleteContact("Raj", "Pal");
 console.log(addressBookArr);
